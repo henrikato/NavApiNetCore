@@ -6,7 +6,7 @@ API de um projeto desenvolvido durante o 5º termo do bacharelado de Sistemas de
 O Front-end que consumirá esta API terá seu link disponibilizado aqui em breve.
 
 ### Tecnologias utilizadas:
-* [ASP.NET CORE 2.2][1]
+* [ASP.NET Core 2.2][1]
 * [Entity Framework 6.2.0][2]
 
 [1]: https://dotnet.microsoft.com/apps/aspnet	"ASP.NET Core 2.2"
