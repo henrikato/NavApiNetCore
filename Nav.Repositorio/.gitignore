@@ -1,0 +1,9 @@
+.DS_STORE
+.vs
+packages/
+Nav.Api/bin
+Nav.Api/obj
+Nav.Dominio/bin
+Nav.Dominio/obj
+Nav.Repositorio/bin
+Nav.Repositorio/obj
