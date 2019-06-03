@@ -1,19 +1,20 @@
-﻿using System.Data.Entity.ModelConfiguration;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Nav.Dominio.Entidades;
 
 namespace Nav.Repositorio.Mapeamentos
 {
-    public class UsuarioMap : EntityTypeConfiguration<Usuario>
+    public class UsuarioMap : IEntityTypeConfiguration<Usuario>
     {
-        public UsuarioMap()
+        public void Configure(EntityTypeBuilder<Usuario> builder)
         {
-            HasKey(x => x.Id);
-            Property(x => x.Nome).HasMaxLength(20).IsRequired();
-            Property(x => x.Sobrenome).HasMaxLength(20).IsRequired();
-            Property(x => x.Email).HasMaxLength(50).IsRequired();
-            Property(x => x.NumeroTelefone).HasMaxLength(11).IsRequired();
-            Property(x => x.Cpf).HasMaxLength(11).IsRequired();
-            Property(x => x.DataNascimento).IsRequired();
+            builder.HasKey(x => x.Id);
+            builder.Property(x => x.Nome).HasMaxLength(20).IsRequired();
+            builder.Property(x => x.Sobrenome).HasMaxLength(20).IsRequired();
+            builder.Property(x => x.Email).HasMaxLength(50).IsRequired();
+            builder.Property(x => x.NumeroTelefone).HasMaxLength(11).IsRequired();
+            builder.Property(x => x.Cpf).HasMaxLength(11).IsRequired();
+            builder.Property(x => x.DataNascimento).IsRequired();
         }
     }
 }
