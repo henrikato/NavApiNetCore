@@ -1,0 +1,238 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>NAV - API</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro&display=swap');
+            *{ font-family: Arial, Helvetica, sans-serif; }
+            body{ background: #202020; color: #EFEFEF; width: 70%; margin: 0 auto; }
+            code{
+                padding: 0 3px;
+                border-radius: 3px;
+                font-family: "Source Code Pro", monospace;
+                font-size: 10pt;
+                background: #303030;
+            }
+            ol { counter-reset: item; }
+            ol li { display: block; }
+            ol li:before { content: counters(item, ".") " "; counter-increment: item; }
+            
+            .header{
+                margin-bottom: 30px;
+                padding-bottom: 30px;
+                border-bottom: 1px solid #909090;
+            }
+            .header h1{
+                font-size: 30pt;
+                text-align: center;
+                font-weight: lighter;
+                letter-spacing: 1px;
+            }
+            .header h3{ text-align: center; margin-bottom: 0; }
+            .header p{ text-align: center; margin: 0; }
+            
+            .descricao h3, p{ font-weight: normal; text-align: center; }
+            
+            .arvore-estrutura > h3{
+                margin-top: 50px;
+                text-align: center;
+            }
+            .arvore-estrutura > ol{ 
+                margin: 20px auto;
+                padding: 20px;
+                display: block;
+                width: 70%;
+                background: #303030;
+                color: #EFEFEF;
+                border-radius: 3px;
+                box-shadow: 0 0 2px 0 rgba(0,0,0,.6);
+            }
+            .arvore-estrutura > ol * { font-family: "Source Code Pro", monospace; }
+            .arvore-estrutura > ol > li { margin-top: 20px; }
+            .arvore-estrutura > ol > li > span { color: #03A9F4; }
+            .arvore-estrutura > ol > li > ol > li { margin-top: 5px; }
+            .arvore-estrutura > ol > li > ol{ font-size: 10pt; }
+            .classe { color: #0091EA; }
+            .objeto-valor{ color: #FFEB3B; }
+            .interface{ color: #1DE9B6; }
+            
+            .demais-explicacoes ul > li{ margin-top: 20px; }
+            .demais-explicacoes p { text-align: left; }
+            
+            .tipo-vs{
+                border-radius: 3px;
+                margin: 20px 0;
+                padding: 20px;
+                background: #303030;
+                box-shadow: 0 0 2px 0 rgba(0,0,0,.6);
+            }
+            .tipo-vs p { margin: 0; }
+            .tipo-vs *{ font-family: "Source Code Pro", monospace; font-size: 10pt; }
+            .tipo-vs .rw{ color: #03A9F4; }
+            .tipo-vs .pw{ color: #FFEE58; }
+            .tipo-vs .cw{ color: #00BFA5; }
+            .tipo-vs .iw{ color: #AED581; }
+            .tipo-vs .comment{ color: #6E9E6A; }
+            .tipo-vs .tab-1{
+                margin-left: 24pt;
+            }
+            .tipo-vs .tab-2{
+                margin-left: 48pt;
+            }
+            .tipo-vs .tab-3{
+                margin-left: 72pt;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <h1>API do projeto NAV</h1>
+            <h3>Integrantes do grupo do projeto:</h3>
+            <p><span style="opacity: .1; text-decoration: line-through; font-size: 10pt;">(eu)</span> Henrique Toshitaru Machado Kato (API)</p>
+            <p>Gustavo de Castro Fernandes (Front-end)</p>
+            <p>José Roberto Colabono (Documentação)</p>
+            <p>Vinicius Cândido Ferreira</p>
+        </div>
+        <div class="descricao">
+            <h3>Esta API foi feita utilizando ASP.NET Core 2.2 juntamente com o Entity Framework como ORM e o SQL Server como Banco de Dados.</h3>
+            <p>Para fins demonstrativos esta API fornece uma estrutura básica para operações CRUD (Create, Read, Update, Delete) de algumas entidades: Condutor, Funcionário, ItemCaixa, Responsável e Dependente.<br/>Como exemplo de utilização o Front-end que consome esta API exibirá um Dashboard exibindo o balanço de entrada/saída de dinheiro com as informações existentes, cadastradas na tabela com os registros de <code>ItemCaixa</code>.</p>
+        </div>
+        <div class="arvore-estrutura">
+            <h3>A estrutura de código do projeto se resume no seguinte:</h3>
+            <ol>
+                <li>- <span>API</span>
+                    <ol>
+                        <li>Controllers
+                            <ol>
+                                <li class="classe"><b>BaseController</b></li>
+                                <li class="classe">CondutorController</li>
+                                <li class="classe">FuncionarioController</li>
+                                <li class="classe">ItemCaixaController</li>
+                                <li class="classe">ResponsavelController</li>
+                                <li class="classe">DependenteController</li>
+                            </ol>
+                        </li>
+                    </ol>
+                </li>
+                <li>- <span>Domínio</span>
+                    <ol>
+                        <li>Entidades
+                            <ol>
+                                <li class="classe"><b>EntidadeBase</b></li>
+                                <li class="classe">Condutor</li>
+                                <li class="classe">Funcionario</li>
+                                <li class="classe">ItemCaixa</li>
+                                <li class="classe">Responsavel</li>
+                                <li class="classe">Dependente</li> 
+                            </ol>
+                        </li>
+                        <li>ObjetosValor
+                            <ol>
+                                <li class="objeto-valor">CategoriaCaixa</li>
+                            </ol>
+                        </li>
+                    </ol>
+                </li>
+                <li>- <span>Repositório</span>
+                    <ol>
+                        <li>Contexto
+                            <ol>
+                                <li class="classe">MainContext</li>
+                            </ol>
+                        </li>
+                        <li>Mapeamentos
+                            <ol>
+                                <li class="classe">CondutorMap</li>
+                                <li class="classe">FuncionarioMap</li>
+                                <li class="classe">ItemCaixaMap</li>
+                                <li class="classe">ResponsavelMap</li>
+                                <li class="classe">DependenteMap</li>
+                            </ol>
+                        </li>
+                        <li>Migrations (arquivos de migração de banco de dados)</li>
+                        <li>Repositorios
+                            <ol>
+                                <li class="interface">IBaseRepository</li>
+                                <li class="classe">BaseRepository</li>
+                                <li class="interface">ICondutorRepository</li>
+                                <li class="classe">CondutorRepository</li>
+                                <li class="interface">IFuncionarioRepository</li>
+                                <li class="classe">FuncionarioRepository</li>
+                                <li class="interface">IItemCaixaRepository</li>
+                                <li class="classe">ItemCaixaRepository</li>
+                                <li class="interface">IResponsavelRepository</li>
+                                <li class="classe">ResponsavelRepository</li>
+                                <li class="interface">IDependenteRepository</li>
+                                <li class="classe">DependenteRepository</li>
+                            </ol>
+                        </li>
+                    </ol>
+                </li>
+            </ol>
+        </div>
+        <div class="demais-explicacoes">
+            <h3>E agora as explicações...</h3>
+            <p>O objetivo de criar esta estrutura de código foi para reaproveitar o máximo possível de código e evitar escrever e duplicar regras e lógicas que podem mudar em um futuro. Os arquivos que contém a palavra-chave <code>base</code> em seu nome são arquivos "modelo" para os outros da mesma pasta ou projeto.</p>
+            <p>Isto fica claro ao analisar 4 arquivos:</p>
+            <ul>
+                <li><code class="classe">BaseController&lt;<span class="interface">T</span>&gt;</code>: Possui todos os métodos básicos de acesso a um repositório para manipulação de registros no Banco de Dados. Todos os métodos são marcados com a palavra reservada <code>virtual</code> para que possam ser sobrescritos na classe que o implementar, caso o programador queira alterar o comportamento de um destes métodos exclusivamente para a implementação (para alterar a maneira como um registro é persistido, ou para auditoria, etc).</li>
+                <li><code class="classe">EntidadeBase</code>: É uma classe abstrata que deve armazenar todas as propriedades e métodos que devem ser padrão para todas as outras classes que a implementarem, este exemplo, <code>EntidadeBase</code> possui a propriedade Id que nos mapeamentos são a chave primária de todos os registros. Mas em um cenário mais avançado <code>EntidadeBase</code> pode ter também outros campos como datas de criação e alteração (para auditoria), ou a sobrescrita do método padrão <code>Equals</code> para comparar individualmete todas as propiedades da classe (ao invés do <code>object</code> em si).</li>
+                <li><code class="interface">IBaseRepository&lt;<span class="interface">T</span>&gt;</code>: Possui assinaturas dos métodos básicos para acesso e manipulação a um repositório de dados. Nada muito especial ou charmoso aqui.</li>
+                <li><code class="classe">BaseRepository&lt;<span class="interface">T</span>&gt;</code>: Estende de <code>IBaseRepository</code></li> e tem a implementação dos métodos básicos para acesso e manipulação a um Banco de Dados. Novamente, possui os métodos com a palavra reservada <code>virtual</code> para que possam ser sobrescritos, caso necessário.
+            </ul>
+            <p>Estes arquivos possuem um diferencial, <code class="classe">BaseController&lt;<span class="interface">T</span>&gt;</code>, <code class="classe">IBaseRepository&lt;<span class="interface">T</span>&gt;</code> e <code class="classe">BaseRepository&lt;<span class="interface">T</span>&gt;</code> tem em sua declaração este "&lt;<span class="interface">T</span>&gt;" que <span style="text-decoration: line-through; opacity: .2; font-size: 10pt">siginfica T de Triunfo</span> é um Tipo Genérico. Este tipo genérico (que deve herdar de <code>EntidadeBase</code> é essencialmente um <i>slot</i> que espera receber um Tipo (classe) assim que alguma classe implementar uma dessas 3 bases.</p>
+            <p>Esta bagunça fica mais clara ao analisar uns trechos de código do <code class="classe">BaseController&lt;<span class="interface">T</span>&gt;</code> e <code class="classe">CondutorController</code> como exemplo:</p>
+            <div class="tipo-vs">
+                <p>
+                    <span class="comment">
+                        //BaseController.cs<br /><br />
+                        //BaseController&lt;T&gt; usa este mesmo tipo T para injetar um repositório específico,<br />
+                        // bem como retornar uma lista do tipo T (IEnumerable&lt;T&gt;) no método Get() <br />
+                        // e incluir um item T no método Post
+                    </span> <br /><br />
+                    [<span class="cw">ApiController</span>]<br />
+                    <span class="rw">public abstract class</span> <span class="cw">BaseController</span>&lt;<span class="cw">T</span>&gt; : <span class="cw">ControllerBase</span> <span class="rw">where</span> <span class="cw">T</span>: <span class="cw">EntidadeBase</span><br />
+                    {<br />
+                    <span class="tab-1"><span class="rw">protected readonly</span> <span class="iw">IBaseRepository</span>&lt;<span class="cw">T</span>&gt; _repositorio;</span><br />
+                    <br />
+                    <span class="tab-1"><span class="rw">public</span> BaseController(<span class="iw">IBaseRepository</span>&lt;<span class="cw">T</span>&gt; repositorio)</span><br />
+                    <span class="tab-2">{</span><br />
+                    <span class="tab-3">_repositorio = repositorio;</span><br />
+                    <span class="tab-2">}</span><br />
+                    <br />
+                    <span class="tab-1">[<span class="cw">HttpGet</span>]</span><br />
+                    <span class="tab-1"><span class="rw">public virtual async</span> <span class="cw">Task</span>&lt;<span class="cw">ActionResult</span>&lt;<span class="iw">IEnumerable</span>&lt;<span class="cw">T</span>&gt;&gt;&gt; Get(){...}</span><br />
+                    <br />
+                    <span class="tab-1">[<span class="cw">HttpDelete</span>]</span><br />
+                    <span class="tab-1"><span class="rw">public virtual async</span> <span class="cw">Task</span>&lt;<span class="cw">ActionResult</span>&lt; Post([<span class="cw">FromBody</span>] <span class="cw">T</span> entidade) {...}</span><br />
+                    }<br />
+            </div>
+            <div class="tipo-vs">
+                <p>
+                    <span class="comment">
+                        //ConduorController.cs<br /><br />
+                        //CondutorController implementa BaseController utilizando o Tipo 'Condutor', assim, <br />
+                        // no momento em que for compilada ela herdará todos os métodos de BaseController e <br />
+                        // todos os <i>slots</i> que esperavam o tipo T serão preenchidos pela classe 'Condutor'
+                    </span><br /><br />
+                    [<span class="rw">Route</span>(<span class="pw">"api/[controller]"</span>)]<br />
+                    <span class="rw">public class</span> <span class="cw">CondutorController</span> : <span class="cw">BaseController</span>&lt;<span class="cw">Condutor</span>&gt;<br />
+                    {<br />
+                    <span class="tab-1"><span class="rw">public</span> <span class="cw">CondutorController</span>(<span class="iw">ICondutorRepository</span> repositorio) : <span class="rw">base</span>(repositorio)</span><br />
+                    <span class="tab-1">{</span><br />
+                    <span class="tab-1"><span class="comment">
+                        // É necessário incluir 'ICondutorRepository' como parâmetro do construtor, por <br />
+                        <span class="tab-1">// 2 razões: o construtor base pede um parâmetro que herde de 'IBaseRepository'</span><br />
+                        <span class="tab-1">// e por conta de ser usado um motor de injeção de dependência (injetando os repositórios)</span>
+                        </span></span><br />
+                    <span class="tab-1">}</span><br /><br />
+                    <span class="tab-1"><span class="comment">
+                        // Não há mais nada a fazer aqui, não é necessário escrever os métodos de CRUD pois eu<br />
+                        <span class="tab-1">// utilizo os métodos padrão herdados do 'BaseController'</span>
+                        </span></span><br />
+                    }
+            </div>
+        </div>
+    </body>
+</html>

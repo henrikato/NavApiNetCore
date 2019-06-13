@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Nav.Repositorio.Contexto;
 using Nav.Repositorio.Repositorios;
+using Newtonsoft.Json;
 
 namespace Nav.Api
 {
@@ -19,9 +20,13 @@ namespace Nav.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.AddMvc().AddJsonOptions(o => o.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
             services.AddScoped<MainContext, MainContext>();
-            services.AddTransient<IUsuarioRepository, UsuarioRepository>();
+            services.AddTransient<ICondutorRepository, CondutorRepository>();
+            services.AddTransient<IFuncionarioRepository, FuncionarioRepository>();
+            services.AddTransient<IResponsavelRepository, ResponsavelRepository>();
+            services.AddTransient<IDependenteRepository, DependenteRepository>();
+            services.AddTransient<IItemCaixaRepository, ItemCaixaRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,6 +44,9 @@ namespace Nav.Api
 
             app.UseHttpsRedirection();
             app.UseMvc();
+
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
         }
     }
 }

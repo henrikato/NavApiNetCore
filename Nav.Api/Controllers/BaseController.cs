@@ -1,33 +1,115 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Nav.Dominio.Entidades;
+using Nav.Repositorio.Repositorios;
 
 namespace Nav.Api.Controllers
 {
     [ApiController]
-    public abstract class BaseController<T, TId> : ControllerBase where T : EntidadeBase
+    public abstract class BaseController<T> : ControllerBase where T : EntidadeBase
     {
-        // GET api/values
+        protected readonly IBaseRepository<T> _repositorio;
+
+        public BaseController(IBaseRepository<T> repositorio)
+        {
+            _repositorio = repositorio;
+        }
+
         [HttpGet]
-        public abstract Task<ActionResult<IEnumerable<T>>> Get();
+        public virtual async Task<ActionResult<IEnumerable<T>>> Get()
+        {
+            try
+            {
+                var retorno = await _repositorio.GetAll();
+                return Ok(retorno);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex);
+            }
+        }
 
-        // GET api/values/5
         [HttpGet("{id}")]
-        public abstract Task<ActionResult<T>> Get(TId id);
+        public virtual async Task<ActionResult<T>> Get(long id)
+        {
+            try
+            {
+                var retorno = await _repositorio.Get(id);
+                return Ok(retorno);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex);
+            }
+        }
 
-        // POST api/values
         [HttpPost]
-        public abstract Task<ActionResult> Post([FromBody] T entidade);
+        public virtual async Task<ActionResult> Post([FromBody] T entidade)
+        {
+            try
+            {
+                var retorno = await _repositorio.Post(entidade);
+                if (!retorno)
+                {
+                    return UnprocessableEntity(new
+                    {
+                        Mensagem = "Não foi possível incluir o registro, verifique as informações e tente novamente.",
+                        Objeto = retorno
+                    });
+                }
+                return CreatedAtAction("POST", new { entidade.Id }, entidade);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex);
+            }
+        }
 
-        // PUT api/values/5
         [HttpPut("{id}")]
-        public abstract Task<ActionResult> Put(TId id, [FromBody] T entidade);
+        public virtual async Task<ActionResult> Put(long id, [FromBody] T entidade)
+        {
+            try
+            {
+                var retorno = await _repositorio.Put(id, entidade);
+                if (!retorno)
+                {
+                    return UnprocessableEntity(new
+                    {
+                        Mensagem = "Não foi possível atualizar o registro, verifique as informações e tente novamente.",
+                        Objeto = retorno
+                    });
+                }
 
-        // DELETE api/values/5
+                return Ok(new { Mensagem = $"Registro #{id} atualizado com suceesso.", Objeto = retorno });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex);
+            }
+        }
+
         [HttpDelete("{id}")]
-        public abstract Task<ActionResult> Delete(TId id);
+        public virtual async Task<ActionResult> Delete(long id)
+        {
+            try
+            {
+                var retorno = await _repositorio.Delete(id);
+                if (!retorno)
+                {
+                    return UnprocessableEntity(new
+                    {
+                        Mensagem = $"Não foi possível excluir o registro (ID {id}), verifique as informações e tente novamente.",
+                    });
+                }
+
+                return Ok(new { Mensagem = $"Registro #{id} excluído com sucesso." });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex);
+            }
+        }
     }
 }

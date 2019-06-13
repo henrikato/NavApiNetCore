@@ -2,7 +2,7 @@
 
 namespace Nav.Repositorio.Repositorios
 {
-    public interface IUsuarioRepository : IBaseRepository<Usuario>
+    public interface IResponsavelRepository : IBaseRepository<Responsavel>
     {
 
     }

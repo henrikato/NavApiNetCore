@@ -14,4 +14,13 @@
     <ProjectReference Include="..\Nav.Dominio\Nav.Dominio.csproj" />
     <ProjectReference Include="..\Nav.Repositorio\Nav.Repositorio.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="wwwroot\index.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="wwwroot\index.html" />
+  </ItemGroup>
 </Project>
