@@ -5,7 +5,7 @@ API de um projeto desenvolvido durante o 5º termo do bacharelado de Sistemas de
 
 O Front-end que consumirá esta API terá seu link disponibilizado aqui em breve.
 
-A API está disponível online nesta url: <a href="http://ec2-18-231-174-195.sa-east-1.compute.amazonaws.com:8080" target="_blank">NAV - API</a>. A sua página inicial possui mais detalhes da estrutura do projeto e seu código. 
+A API está disponível online nesta url: [NAV - API][3]. A sua página inicial possui mais detalhes da estrutura do projeto e seu código. 
 
 ----
 
