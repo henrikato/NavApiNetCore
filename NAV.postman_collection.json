@@ -1,0 +1,114 @@
+{
+	"info": {
+		"_postman_id": "5cfbbe45-d5d1-4e65-a0c1-6c7dc9d9a863",
+		"name": "NAV",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Criar um condutor",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"Nome\": \"Henrique\",\n\t\"Sobrenome\": \"Kato\",\n\t\"Cpf\": \"12345678900\",\n\t\"Email\": \"henrique.kato2@outlook.com\",\n\t\"NumeroTelefone\": \"14998004985\",\n\t\"DataNascimento\": \"1999-01-17 00:00:00\",\n\t\"Registro\": \"123456789-X\"\n}"
+				},
+				"url": {
+					"raw": "http://ec2-18-231-174-195.sa-east-1.compute.amazonaws.com:8080/api/condutor",
+					"protocol": "http",
+					"host": [
+						"ec2-18-231-174-195",
+						"sa-east-1",
+						"compute",
+						"amazonaws",
+						"com"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"condutor"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Criar novo Funcionário",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"Nome\": \"Vinicius\",\n\t\"Sobrenome\": \"Candido\",\n\t\"Cpf\": \"12345678900\",\n\t\"Email\": \"vinicius-cf2012@hotmail.com\",\n\t\"NumeroTelefone\": \"14987654321\",\n\t\"DataNascimento\": \"1999-02-22 00:00:00\",\n\t\"Registro\": \"123456789-X\",\n\t\"SuperiorId\": 3\n}"
+				},
+				"url": {
+					"raw": "http://ec2-18-231-174-195.sa-east-1.compute.amazonaws.com:8080/api/funcionario",
+					"protocol": "http",
+					"host": [
+						"ec2-18-231-174-195",
+						"sa-east-1",
+						"compute",
+						"amazonaws",
+						"com"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"funcionario"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Criar um item de caixa do condutor",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"CondutorId\": 3,\n\t\"Descricao\": \"Mensalidade do joão\",\n\t\"Categoria\": 2,\n\t\"Valor\": 45.9,\n\t\"DataRegistro\": \"2019-07-13 17:30:00\"\n}"
+				},
+				"url": {
+					"raw": "http://ec2-18-231-174-195.sa-east-1.compute.amazonaws.com:8080/api/itemcaixa",
+					"protocol": "http",
+					"host": [
+						"ec2-18-231-174-195",
+						"sa-east-1",
+						"compute",
+						"amazonaws",
+						"com"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"itemcaixa"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
