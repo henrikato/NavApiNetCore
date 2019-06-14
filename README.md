@@ -7,8 +7,13 @@ O Front-end que consumirá esta API terá seu link disponibilizado aqui em breve
 
 A API está disponível online nesta url: [NAV - API][3]. A sua página inicial possui mais detalhes da estrutura do projeto e seu código. 
 
+----
+
 O arquivo [NAV.postman_collection.json][4] é uma coleção do Postman com os métodos básicos para interagir com a API: criação de condutor, funcionário e um item de caixa (entrada/saída de dinheiro).
+
 _Alterando os verbos destes métodos é possível executar outras operações com estas 3 entidades. Os verbos atualmente suportados são: GET, GET (passando um ID no final da URL. Ex: /api/condutor/3), POST, PUT e DELETE_
+
+====
 
 ### Tecnologias utilizadas:
 * [ASP.NET Core 2.2][1]
