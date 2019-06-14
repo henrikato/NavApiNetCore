@@ -1,5 +1,5 @@
 NAV API
-====
+----
 
 API de um projeto desenvolvido durante o 5º termo do bacharelado de Sistemas de Informação, como domínio sendo um sistema idealizado e estruturado em outra disciplina da graduação.
 
@@ -13,7 +13,7 @@ O arquivo [NAV.postman_collection.json][4] é uma coleção do Postman com os m�
 
 _Alterando os verbos destes métodos é possível executar outras operações com estas 3 entidades. Os verbos atualmente suportados são: GET, GET (passando um ID no final da URL. Ex: /api/condutor/3), POST, PUT e DELETE_
 
-====
+----
 
 ### Tecnologias utilizadas:
 * [ASP.NET Core 2.2][1]
